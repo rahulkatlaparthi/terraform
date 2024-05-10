@@ -66,12 +66,12 @@ provider "azurerm" {
 //     subresource_names=["sqlServer"]
 //   }
 
-// resource "azurerm_user_assigned_identity" "example" {
-//   name="example-identity"
-//   resource_group_name       = var.resource_group_name
-//   location                  = var.location
+resource "azurerm_user_assigned_identity" "example" {
+  name="example-identity"
+  resource_group_name       = var.resource_group_name
+  location                  = var.location
   
-// }
+}
 
 // resource "azurerm_storage_account" "storeacc" {
 //   name                      = var.storage_account_name
@@ -117,4 +117,22 @@ resource "azurerm_app_service_plan" "example" {
     tier = var.app_service_plan_tier
     size = var.app_service_plan_size
   }
+}
+
+resource "azurerm_app_service" "example" {
+  name                = "example-app-service"
+  location            = var.location
+  resource_group_name = var.resource_group_name
+  app_service_plan_id = azurerm_app_service_plan.example.id
+
+  site_config {
+    java = "1.8"
+    java_container="TOMCAT"
+  }
+    identity{
+    type="UserAssigned"
+    identity_ids=[azurerm_user_assigned_identity.example.id]
+  }
+
+
 }

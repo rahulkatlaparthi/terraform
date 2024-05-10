@@ -18,6 +18,7 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'init'
+    commandOptions: '-var-file=devvariables.tf'
     backendServiceArm: 'Free Trial(1)(aa8cf85a-4850-4a20-a36c-298efad14547)'
     backendAzureRmResourceGroupName: 'dev'
     backendAzureRmStorageAccountName: 'samplest56h'

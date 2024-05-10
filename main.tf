@@ -49,7 +49,7 @@ provider "azurerm" {
 
 resource "azurerm_private_endpoint" "example" {
   name                = "ple-sql"
-  location            = "Central India"
+  location            = "West Europe"
   resource_group_name = "example-resources"
   subnet_id           = "/subscriptions/aa8cf85a-4850-4a20-a36c-298efad14547/resourceGroups/example-resources/providers/Microsoft.Network/virtualNetworks/example-network/subnets/service"
 

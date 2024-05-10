@@ -154,8 +154,8 @@ resource "azurerm_key_vault" "vault" {
 
 resource "azurerm_key_vault_access_policy" "example" {
   key_vault_id = azurerm_key_vault.vault.id
-  tenant_id    = azurerm_user_assigned_identity.example.tenantId
-  object_id    = azurerm_user_assigned_identity.example.principalId
+  tenant_id    = azurerm_user_assigned_identity.example.tenant_id
+  object_id    = azurerm_user_assigned_identity.example.principal_id
 
   key_permissions = [
     "Get",

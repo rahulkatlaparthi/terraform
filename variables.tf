@@ -40,6 +40,18 @@ variable "access_tier" {
   type        = string
 }
 
+variable "account_tier" {
+  
+  default     = "Standard"
+  type        = string
+}
+
+variable "account_replication_type" {
+  
+  default     = "LRS"
+  type        = string
+}
+
 variable "min_tls_version" {
   description = "The minimum supported TLS version for the storage account"
   default     = "TLS1_2"

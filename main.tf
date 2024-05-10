@@ -127,8 +127,11 @@ resource "azurerm_app_service" "exampleappservice" {
   app_service_plan_id = azurerm_app_service_plan.exampleappserviceplan.id
 
   site_config {
-    java = "1.8"
-    java_container="TOMCAT"
+    linux_fx_version = "TOMCAT|9.0-java11"
+  always_on              = true
+  java_version           = "11"
+  java_container         = "JAVA"
+  java_container_version = "11"
   }
     identity{
     type="UserAssigned"

@@ -124,7 +124,7 @@ resource "azurerm_app_service" "exampleappservice" {
   name                = "example-app-service"
   location            = var.location
   resource_group_name = var.resource_group_name
-  app_service_plan_id = azurerm_app_service_plan.example.id
+  app_service_plan_id = azurerm_app_service_plan.exampleappserviceplan.id
 
   site_config {
     java = "1.8"

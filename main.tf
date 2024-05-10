@@ -146,6 +146,7 @@ resource "azurerm_key_vault" "vault" {
   name                       = "rahulkykeyvault"
   location                   = var.location
   resource_group_name        = var.resource_group_name
+  tenant_id="26c0f402-6550-45b8-a992-cc6da4656d81"
 
   sku_name                   = var.sku_name
 

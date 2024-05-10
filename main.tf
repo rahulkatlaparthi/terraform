@@ -22,14 +22,14 @@ provider "azurerm" {
 resource "azurerm_virtual_network" "example" {
   name                = "example-network"
   address_space       = ["10.0.0.0/16"]
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
+  location            = "West Europe"
+  resource_group_name = "example-resources"
 }
 
 resource "azurerm_subnet" "service" {
   name                 = "service"
-  resource_group_name  = azurerm_resource_group.example.name
-  virtual_network_name = azurerm_virtual_network.example.name
+  resource_group_name  = "example-resources"
+  virtual_network_name = "example-network"
   address_prefixes     = ["10.0.1.0/24"]
 
   enforce_private_link_service_network_policies = true

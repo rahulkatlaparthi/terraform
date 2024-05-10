@@ -35,7 +35,7 @@ provider "azurerm" {
 //   enforce_private_link_service_network_policies = true
 // }
 resource "azurerm_sql_server" "example" {
-  name                         = "mssqlserver"
+  name                         = "mssqlserverrahul73"
   resource_group_name          = "example-resources"
   location                     = "Central India"
   version                      = "12.0"

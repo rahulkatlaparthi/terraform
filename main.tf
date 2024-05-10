@@ -66,12 +66,12 @@ provider "azurerm" {
 //     subresource_names=["sqlServer"]
 //   }
 
-resource "azurerm_user_assigned_identity" "example" {
-  name="example-identity"
-  resource_group_name       = var.resource_group_name
-  location                  = var.location
+// resource "azurerm_user_assigned_identity" "example" {
+//   name="example-identity"
+//   resource_group_name       = var.resource_group_name
+//   location                  = var.location
   
-}
+// }
 
 // resource "azurerm_storage_account" "storeacc" {
 //   name                      = var.storage_account_name
@@ -183,15 +183,25 @@ resource "azurerm_user_assigned_identity" "example" {
 
 // }
 
-resource "azurerm_data_factory" "dafactory" {
-  name                = "rahadf69"
-  location            = var.location
-  resource_group_name = var.resource_group_name
-      identity{
-        type="UserAssigned"
-          identity_ids=[azurerm_user_assigned_identity.example.id]
+// resource "azurerm_data_factory" "dafactory" {
+//   name                = "rahadf69"
+//   location            = var.location
+//   resource_group_name = var.resource_group_name
+//       identity{
+//         type="UserAssigned"
+//           identity_ids=[azurerm_user_assigned_identity.example.id]
+//   }
+//    depends_on=[azurerm_user_assigned_identity.example]
+// }
+
+resource "azurerm_log_analytics_cluster" "example" {
+  name                = "example-cluster"
+  resource_group_name = azurerm_resource_group.example.name
+  location            = azurerm_resource_group.example.location
+
+  identity {
+    type = "SystemAssigned"
   }
-   depends_on=[azurerm_user_assigned_identity.example]
 }
 
 

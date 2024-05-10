@@ -14,25 +14,26 @@ steps:
   displayName: 'Run a one-line script'
 
 - script: |
-# - task: TerraformTaskV4@4
-#   inputs:
-#     provider: 'azurerm'
-#     command: 'init'
-#     backendServiceArm: 'Free Trial(1)(aa8cf85a-4850-4a20-a36c-298efad14547)'
-#     backendAzureRmResourceGroupName: 'dev'
-#     backendAzureRmStorageAccountName: 'samplest56h'
-#     backendAzureRmContainerName: 'sample'
-#     backendAzureRmKey: 'tf.state'
-
-# - task: TerraformTaskV4@4
-#   inputs:
-#     provider: 'azurerm'
-#     command: 'apply'
-#     environmentServiceNameAzureRM: 'Free Trial(1)(aa8cf85a-4850-4a20-a36c-298efad14547)'
-
-- task: AzurePowerShell@5
+- task: TerraformTaskV4@4
   inputs:
-    azureSubscription: 'Free Trial(1)(aa8cf85a-4850-4a20-a36c-298efad14547)'
-    ScriptType: 'InlineScript'
-    Inline: 'az vm --resource-group "dev" -name "dev" --destination-group "example-resources"'
-    azurePowerShellVersion: 'LatestVersion'
+    provider: 'azurerm'
+    command: 'init'
+    backendServiceArm: 'Free Trial(1)(aa8cf85a-4850-4a20-a36c-298efad14547)'
+    backendAzureRmResourceGroupName: 'dev'
+    backendAzureRmStorageAccountName: 'samplest56h'
+    backendAzureRmContainerName: 'sample'
+    backendAzureRmKey: 'tf.state'
+
+- task: TerraformTaskV4@4
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
+    commandOptions: '-var-file=devvariables.tf'
+    environmentServiceNameAzureRM: 'Free Trial(1)(aa8cf85a-4850-4a20-a36c-298efad14547)'
+
+# - task: AzurePowerShell@5
+#   inputs:
+#     azureSubscription: 'Free Trial(1)(aa8cf85a-4850-4a20-a36c-298efad14547)'
+#     ScriptType: 'InlineScript'
+#     Inline: 'az vm --resource-group "dev" -name "dev" --destination-group "example-resources"'
+#     azurePowerShellVersion: 'LatestVersion'

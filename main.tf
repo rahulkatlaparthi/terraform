@@ -149,8 +149,19 @@ resource "azurerm_key_vault" "vault" {
   tenant_id="26c0f402-6550-45b8-a992-cc6da4656d81"
 
   sku_name                   = var.sku_name
-
-
-
   
+}
+
+resource "azurerm_key_vault_access_policy" "example" {
+  key_vault_id = azurerm_key_vault.vault.id
+  tenant_id    = data.azurerm_client_config.current.tenant_id
+  object_id    = azurerm_user_assigned_identity.example.id
+
+  key_permissions = [
+    "Get",
+  ]
+
+  secret_permissions = [
+    "Get",
+  ]
 }

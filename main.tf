@@ -102,6 +102,6 @@ resource "azurerm_private_endpoint" "example" {
     name                           = "storageple"
     private_connection_resource_id = "/subscriptions/aa8cf85a-4850-4a20-a36c-298efad14547/resourceGroups/example-resources/providers/Microsoft.Storage/storageAccounts/rahulstg619"
     is_manual_connection           = false
-    subresource_names=["storage"]
+    subresource_names=["blob"]
   }
 }

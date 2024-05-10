@@ -106,7 +106,7 @@ resource "azurerm_user_assigned_identity" "example" {
 //   }
 //    depends_on=[azurerm_storage_account.storeacc]
 // }
-resource "azurerm_app_service_plan" "example" {
+resource "azurerm_app_service_plan" "exampleappserviceplan" {
   name                = var.app_service_plan
   location            = var.location
   resource_group_name = var.resource_group_name
@@ -117,25 +117,24 @@ resource "azurerm_app_service_plan" "example" {
     tier = var.app_service_plan_tier
     size = var.app_service_plan_size
   }
+  depends_on=[azurerm_user_assigned_identity.example]
 }
 
-resource "azurerm_app_service" "example" {
+resource "azurerm_app_service" "exampleappservice" {
   name                = "example-app-service"
   location            = var.location
   resource_group_name = var.resource_group_name
   app_service_plan_id = azurerm_app_service_plan.example.id
 
   site_config {
-     linux_fx_version = "TOMCAT|9.0-java11"
-    always_on              = true
-    java_version           = "11"
-    java_container         = "JAVA"
-    java_container_version = "11"
+    java = "1.8"
+    java_container="TOMCAT"
   }
     identity{
     type="UserAssigned"
     identity_ids=[azurerm_user_assigned_identity.example.id]
   }
+  depends_on=[azurerm_app_service_plan.exampleappserviceplan]
 
 
 }

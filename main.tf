@@ -1,13 +1,20 @@
-provider "azurerm" {  
-          #version = "=2.20.0"  #version = "=0.13.1" 
-           version = "=2.20.0"
-		   
-           subscription_id = "26c0f402-6550-45b8-a992-cc6da4656d81" 
-            tenant_id       = "26c0f402-6550-45b8-a992-cc6da4656d81"  
-            client_id       = "12820d3c-c69e-400a-a835-e194068d8363"  
-            features {}  
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "=3.0.0"
+    }
+  }
 }
-resource "azurerm_resource_group" "RS1" {
-  name     = "Firstresource"
+
+# Configure the Microsoft Azure Provider
+provider "azurerm" {
+  skip_provider_registration = true # This is only required when the User, Service Principal, or Identity running Terraform lacks the permissions to register Azure Resource Providers.
+  features {}
+}
+
+# Create a resource group
+resource "azurerm_resource_group" "example" {
+  name     = "example-resources"
   location = "West Europe"
 }

@@ -196,7 +196,7 @@ provider "azurerm" {
 
 resource "azurerm_log_analytics_cluster" "example" {
   name                = "example-cluster"
-  resource_group_name = var.resource
+  resource_group_name = var.resource_group_name
   location            = var.location
 
   identity {

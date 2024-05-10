@@ -29,6 +29,11 @@ variable "app_service_plan" {
   default     = "rahulasp619"
   type        = string
 }
+variable "app_service_name" {
+  
+  default     = "rahulas619"
+  type        = string
+}
 variable "app_service_plan_kind" {
   
   default     = "Linux"

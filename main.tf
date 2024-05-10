@@ -92,7 +92,7 @@ provider "azurerm" {
 // }
 
 
-resource "azurerm_private_endpoint" "example" {
+resource "azurerm_private_endpoint" "storageprivate" {
   name                = "ple-storage"
   location            = "West Europe"
   resource_group_name = "example-resources"

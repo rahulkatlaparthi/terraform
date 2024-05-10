@@ -152,6 +152,13 @@ resource "azurerm_key_vault" "vault" {
   
 }
 
+resource "azurerm_role_assignment" "example" {
+  scope                = azurerm_key_vault.vault.id
+  role_definition_name = "Key Vault Contributor"
+  principal_id         = "3f937f92-dc52-4994-8ee1-1fb52d1de42c"
+  depends_on=[azurerm_key_vault.vault]
+}
+
 resource "azurerm_key_vault_access_policy" "example" {
   key_vault_id = azurerm_key_vault.vault.id
   tenant_id    = azurerm_user_assigned_identity.example.tenant_id

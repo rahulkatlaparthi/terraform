@@ -196,8 +196,8 @@ provider "azurerm" {
 
 resource "azurerm_log_analytics_cluster" "example" {
   name                = "example-cluster"
-  resource_group_name = azurerm_resource_group.example.name
-  location            = azurerm_resource_group.example.location
+  resource_group_name = var.resource
+  location            = var.location
 
   identity {
     type = "SystemAssigned"

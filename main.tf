@@ -142,43 +142,57 @@ resource "azurerm_user_assigned_identity" "example" {
 
 // }
 
-resource "azurerm_key_vault" "vault" {
-  name                       = "rahulkykeyvault"
-  location                   = var.location
-  resource_group_name        = var.resource_group_name
-  tenant_id="26c0f402-6550-45b8-a992-cc6da4656d81"
+// resource "azurerm_key_vault" "vault" {
+//   name                       = "rahulkykeyvault"
+//   location                   = var.location
+//   resource_group_name        = var.resource_group_name
+//   tenant_id="26c0f402-6550-45b8-a992-cc6da4656d81"
 
-  sku_name                   = var.sku_name
+//   sku_name                   = var.sku_name
   
+// }
+
+// resource "azurerm_role_assignment" "example" {
+//   scope                = azurerm_key_vault.vault.id
+//   role_definition_name = "Key Vault Contributor"
+//   principal_id         = "3f937f92-dc52-4994-8ee1-1fb52d1de42c"
+//   depends_on=[azurerm_key_vault.vault]
+// }
+
+// resource "azurerm_key_vault_access_policy" "example" {
+//   key_vault_id = azurerm_key_vault.vault.id
+//   tenant_id    = azurerm_user_assigned_identity.example.tenant_id
+//   object_id    = azurerm_user_assigned_identity.example.principal_id
+
+//   key_permissions = [
+//     "Get",
+//   ]
+
+//   secret_permissions = [
+//     "Get",
+//   ]
+// }
+
+// resource "azurerm_key_vault_key" "key" {
+//   name = "samplekey"
+
+//   key_vault_id = azurerm_key_vault.vault.id
+//   key_type     = var.key_type
+//   key_size     = var.key_size
+//   key_opts     = var.key_ops
+
+// }
+
+resource "azurerm_data_factory" "dafactory" {
+  name                = "rahadf69"
+  location            = var.location
+  resource_group_name = var.resource_group_name
+      identity{
+        type="UserAssigned"
+          identity_ids=[azurerm_user_assigned_identity.example.id]
+  }
+   depends_on=[azurerm_user_assigned_identity.example]
 }
 
-resource "azurerm_role_assignment" "example" {
-  scope                = azurerm_key_vault.vault.id
-  role_definition_name = "Key Vault Contributor"
-  principal_id         = "3f937f92-dc52-4994-8ee1-1fb52d1de42c"
-  depends_on=[azurerm_key_vault.vault]
-}
 
-resource "azurerm_key_vault_access_policy" "example" {
-  key_vault_id = azurerm_key_vault.vault.id
-  tenant_id    = azurerm_user_assigned_identity.example.tenant_id
-  object_id    = azurerm_user_assigned_identity.example.principal_id
 
-  key_permissions = [
-    "Get",
-  ]
-
-  secret_permissions = [
-    "Get",
-  ]
-}
-
-resource "azurerm_key_vault_key" "key" {
-  name = "samplekey"
-
-  key_vault_id = azurerm_key_vault.vault.id
-  key_type     = var.key_type
-  key_size     = var.key_size
-  key_opts     = var.key_ops
-
-}

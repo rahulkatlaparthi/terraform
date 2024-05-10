@@ -75,7 +75,7 @@ resource "azurerm_user_assigned_identity" "example" {
 }
 
 resource "azurerm_storage_account" "storeacc" {
-  name                      = substr(format("sta%s%s", lower(replace(var.storage_account_name, "/[[:^alnum:]]/", "")), random_string.unique.result), 0, 24)
+  name                      = var.storage_account_name
   resource_group_name       = var.resource_group_name
   location                  = var.location
   account_kind              = var.account_kind
@@ -83,7 +83,7 @@ resource "azurerm_storage_account" "storeacc" {
   account_replication_type  = var.skuname
   enable_https_traffic_only = true
   min_tls_version           = var.min_tls_version
-  tags                      = merge({ "ResourceName" = substr(format("sta%s%s", lower(replace(var.storage_account_name, "/[[:^alnum:]]/", "")), random_string.unique.result), 0, 24) }, var.tags, )
+  tags                      = var.tags
   identity{
     type="UserAssigned"
     identity_ids=[azurerm_user_assigned_identity.example.id]

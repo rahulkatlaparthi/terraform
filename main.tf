@@ -194,15 +194,21 @@ provider "azurerm" {
 //    depends_on=[azurerm_user_assigned_identity.example]
 // }
 
-resource "azurerm_log_analytics_cluster" "example" {
-  name                = "example-cluster"
-  resource_group_name = var.resource_group_name
-  location            = var.location
+// resource "azurerm_log_analytics_cluster" "example" {
+//   name                = "example-cluster"
+//   resource_group_name = var.resource_group_name
+//   location            = var.location
 
-  identity {
-    type = "SystemAssigned"
-  }
+//   identity {
+//     type = "SystemAssigned"
+//   }
+// }
+
+resource "azurerm_application_insights" "example" {
+  name                = "tf-test-appinsights"
+  location            = var.resource_group_name
+  resource_group_name = var.location
+  application_type    = "web"
 }
-
 
 

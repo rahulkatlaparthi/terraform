@@ -66,6 +66,25 @@ variable "account_kind" {
   type        = string
 }
 
+variable "key_type" {
+  
+  default     = "RSA"
+  type        = string
+}
+
+variable "key_size" {
+  
+  default     = "2048"
+  type        = number
+}
+
+variable "key_ops" {
+  
+   default     = ["decrypt", "encrypt", "sign", "unwrapKey", "verify", "wrapKey"]
+  type        = list(string)
+}
+
+
 variable "skuname" {
   description = "The SKUs supported by Microsoft Azure Storage. Valid options are Premium_LRS, Premium_ZRS, Standard_GRS, Standard_GZRS, Standard_LRS, Standard_RAGRS, Standard_RAGZRS, Standard_ZRS"
   default     = "Standard_LRS"

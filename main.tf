@@ -26,14 +26,14 @@ provider "azurerm" {
 //   resource_group_name = "example-resources"
 // }
 
-resource "azurerm_subnet" "service" {
-  name                 = "service"
-  resource_group_name  = "example-resources"
-  virtual_network_name = "example-network"
-  address_prefixes     = ["10.0.1.0/24"]
+// resource "azurerm_subnet" "service" {
+//   name                 = "service"
+//   resource_group_name  = "example-resources"
+//   virtual_network_name = "example-network"
+//   address_prefixes     = ["10.0.1.0/24"]
 
-  enforce_private_link_service_network_policies = true
-}
+//   enforce_private_link_service_network_policies = true
+// }
 resource "azurerm_sql_server" "example" {
   name                         = "mssqlserver"
   resource_group_name          = "example-resources"

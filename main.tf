@@ -87,7 +87,7 @@ resource "azurerm_storage_account" "storeacc" {
     type="UserAssigned"
     identity_ids=[azurerm_user_assigned_identity.example.id]
   }
-  depends_on=["azurerm_user_assigned_identity.example]
+  depends_on=[azurerm_user_assigned_identity.example]
 
 
 

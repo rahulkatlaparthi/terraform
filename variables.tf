@@ -16,9 +16,34 @@ variable "location" {
   type        = string
 }
 
+
+
 variable "storage_account_name" {
   description = "The name of the azure storage account"
   default     = "rahulstg619"
+  type        = string
+}
+
+variable "app_service_plan" {
+  
+  default     = "rahulasp619"
+  type        = string
+}
+variable "app_service_plan_kind" {
+  
+  default     = "Linux"
+  type        = string
+}
+
+variable "app_service_plan_tier" {
+  
+  default     = "Standard"
+  type        = string
+}
+
+variable "app_service_plan_size" {
+  
+  default     = "S1"
   type        = string
 }
 

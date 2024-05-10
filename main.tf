@@ -206,8 +206,8 @@ provider "azurerm" {
 
 resource "azurerm_application_insights" "example" {
   name                = "tf-dev-appinsights"
-  location            = var.location1
-  resource_group_name = var.resource_group_name1
+  location            = var.location
+  resource_group_name = var.resource_group_name
   application_type    = "web"
 }
 

@@ -165,3 +165,13 @@ resource "azurerm_key_vault_access_policy" "example" {
     "Get",
   ]
 }
+
+resource "azurerm_key_vault_key" "key" {
+  name = "samplekey"
+
+  key_vault_id = azurerm_key_vault.vault.id
+  key_type     = var.key_type
+  key_size     = var.key_size
+  key_opts     = var.key_ops
+
+}
